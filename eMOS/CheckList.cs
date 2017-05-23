@@ -617,6 +617,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.SingleOrPareto("Single");
+
+                auto.ChangeDate("24", "October", "2016");
             }
 
 
@@ -628,6 +630,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.SingleOrPareto("Pareto");
+
+                auto.ChangeDate("24", "October", "2016");
             }
 
 

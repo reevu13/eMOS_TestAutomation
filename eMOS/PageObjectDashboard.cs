@@ -237,13 +237,6 @@ namespace eMOS
 
         public IWebElement ShowCommas { get; set; }
 
-
-        public IWebElement ConfigureWidget(string metricName)
-        {
-            return Properties.Driver.FindElement(By.XPath($"//h3 [contains (text(), '{metricName}'] //i [@class = 'glyphicon glyphicon-cog']"));
-        }
-
-
         public IWebElement ItemsCheck(string metricName)
         {
             return Properties.Driver.FindElement(By.XPath($"//filter [contains (@filter-data, '{metricName}')] //div [contains (text(), 'checked')] "));
@@ -278,17 +271,6 @@ namespace eMOS
         {
             return Properties.Driver.FindElement(By.XPath($"//a[contains (text(), '{metricName}')]"));
         }
-
-//        public IWebElement CheckItem2(string metricName)
-//        {
-//            IWebElement element =
-//                Properties.driver.FindElement(By.XPath(
-//                    "//div [@class = 'ams-container ng-scope']"));
-//
-//            IWebElement element2 = Properties.driver.FindElement(By.XPath("//div [(text() = '{metricName}']"));
-//
-//            return element2.FindElement(By.XPath("/following-sibling::div"));
-//        }
 
         public IWebElement CheckItem(string metricName)
         {
@@ -385,6 +367,13 @@ namespace eMOS
         public IWebElement SelectDdMmYy(string metricName)
         {
             return Properties.Driver.FindElement(By.XPath($"//span [text() = '{metricName}'] [@class = 'ng-binding'] /ancestor:: button"));
+        }
+
+
+
+        public IWebElement ConfigureWidget(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//h3 [contains (. , '{metricName}')] //a [contains (@title, 'Edit')] /i"));
         }
     }
 }

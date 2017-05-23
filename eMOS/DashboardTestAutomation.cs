@@ -156,7 +156,7 @@ namespace eMOS
 
             //CheckItem("70").WaitUntil();
 
-            CheckItem("Alton").Clicks();
+            CheckItem("(70)").Clicks(); CheckItem("(85)").Clicks(); CheckItem("(80)").Clicks(); CheckItem("(75)").Clicks();
 
             MetricLabel.Clicks();
 
@@ -220,7 +220,7 @@ namespace eMOS
 
             ItemsCheck("metric").Clicks();
 
-            CheckItem("Alton - Alt (70)").Clicks();
+            CheckItem("(70)").Clicks(); CheckItem("(85)").Clicks(); CheckItem("(80)").Clicks(); CheckItem("(75)").Clicks();
 
             //SingleFilter.Clicks();
 
@@ -972,7 +972,7 @@ namespace eMOS
         public void ChangeDate(string date, string month, string year)
 
         {
-            DashboardTab.Clicks(); Thread.Sleep(5000);
+            //DashboardTab.Clicks(); Thread.Sleep(5000);
 
             //DashboardDropdown.Clicks();
 

@@ -40,7 +40,7 @@ namespace eMOS
 
                 DbOperation operation = new DbOperation();
 
-                //operation.StoreSnap();
+                operation.StoreSnap();
 
                 operation.ReStoreSnap();
 

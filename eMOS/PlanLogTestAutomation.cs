@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -14,7 +15,12 @@ namespace eMOS
 {
     class PlanLogTestAutomation : PageObjectPlanLog
     {
-        
+
+        public void WaitforIt(int pause)
+
+        {
+            Thread.Sleep(pause);
+        }
 
         public void Login(string userId, string passcode)
         {
@@ -124,12 +130,13 @@ namespace eMOS
             
         }
 
-
-
+       
         public void FavPresent()
 
         {
-            Thread.Sleep(5000);
+            //WaitforIt(Properties.InactivePhase);
+
+            WaitforIt(Properties.LittlePause);
 
             Assert.Multiple((() =>
             {
@@ -161,7 +168,9 @@ namespace eMOS
         public void FavReCorrect()
 
         {
-            Thread.Sleep(5000);
+            //WaitforIt(Properties.InactivePhase);
+
+            WaitforIt(Properties.LittlePause);
 
             Assert.Multiple((() =>
             {
@@ -209,9 +218,9 @@ namespace eMOS
 
             TaskTypeParent("Office Tasks").Clicks();
 
-            TaskTypeChild("Discipline").Clicks(); Thread.Sleep(10000);
+            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.VeryInactivePhase) 
 
-            Complexity.SelectIndex(1); Thread.Sleep(5000);
+            Complexity.SelectIndex(1); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.InactivePhase);
 
             SaveTask.WaitUntil();
 
@@ -228,7 +237,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddExistingTask.Clicks(); Thread.Sleep(5000);
+            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.InactivePhase);
 
             SelectTask(5).WaitUntil();
 
@@ -252,7 +261,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddFavTask.Clicks(); Thread.Sleep(5000);
+            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase); //WaitforIt(Properties.InactivePhase);
 
             SelectTask(9).WaitUntil();
 
@@ -331,7 +340,7 @@ namespace eMOS
 
         public void PlanSave()
         {
-            SaveButton("Save").Clicks(); Thread.Sleep(5000);
+            SaveButton("Save").Clicks(); WaitforIt(Properties.InactivePhase);
 
             SavedElement.WaitUntil();
 
@@ -339,11 +348,11 @@ namespace eMOS
 
             Assert.That(PlanStatus("New").Displayed);
 
-            LogOut.Clicks(); Thread.Sleep(4000);
+            LogOut.Clicks(); WaitforIt(Properties.InactivePhase);
 
             Login("automationuser1", "eMos123!");
 
-            RePlanLog(); Thread.Sleep(5000);
+            RePlanLog(); WaitforIt(Properties.InactivePhase); //WaitforIt(Properties.InactivePhase);
 
 
         }
@@ -364,7 +373,7 @@ namespace eMOS
         public void DeleteResource()
 
         {
-            Thread.Sleep(5000); Resource(.0016, "Arroyo").WaitUntil();
+            WaitforIt(Properties.LittlePause); Resource(.0016, "Arroyo").WaitUntil();
 
             Resource(.0016, "Arroyo").Clicks();
 
@@ -397,7 +406,7 @@ namespace eMOS
 
         public void CheckTimeCalc2()
         {
-            Thread.Sleep(5000);
+            WaitforIt(Properties.InactivePhase);
 
             Assert.Multiple((() =>
 
@@ -415,7 +424,7 @@ namespace eMOS
         public void AddNewTask2()
 
         {
-            Thread.Sleep(5000); AddBtn.WaitUntil();
+            WaitforIt(Properties.InactivePhase); AddBtn.WaitUntil();
 
             AddBtn.Clicks();
 
@@ -427,9 +436,9 @@ namespace eMOS
 
             TaskTypeParent("Office Tasks").Clicks();
 
-            TaskTypeChild("Discipline").Clicks(); Thread.Sleep(10000);
+            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase);//WaitforIt(Properties.VeryInactivePhase)
 
-            Complexity.SelectIndex(1); Thread.Sleep(5000);
+            Complexity.SelectIndex(1); WaitforIt(Properties.VeryInactivePhase);
 
             SaveTask.WaitUntil();
 
@@ -447,7 +456,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddExistingTask.Clicks(); Thread.Sleep(9000);
+            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase); //Thread.Sleep(9000);
 
             SelectTask(3).Clicks();
 
@@ -467,7 +476,7 @@ namespace eMOS
         {
             AddBtn.WaitUntil(); AddBtn.Clicks();
 
-            AddFavTask.Clicks(); Thread.Sleep(4000);
+            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             SelectTask(11).Clicks();
 
@@ -493,7 +502,7 @@ namespace eMOS
 
             SelectResource("Barger").Clicks();
 
-            ResourceAdded.Clicks(); Thread.Sleep(5000);
+            ResourceAdded.Clicks(); WaitforIt(Properties.InactivePhase);
 
         }
 
@@ -509,7 +518,7 @@ namespace eMOS
         public void PlanApprove(string userName)
 
         {
-            Thread.Sleep(5000); SaveButton("Approve").WaitUntil();
+            WaitforIt(Properties.InactivePhase); SaveButton("Approve").WaitUntil();
 
             SaveButton("Approve").Clicks();
 
@@ -519,11 +528,11 @@ namespace eMOS
 
             Assert.That(PlanStatus("Plan Approved").Displayed);
 
-            LogOut.Clicks(); Thread.Sleep(4000);
+            LogOut.Clicks(); WaitforIt(Properties.InactivePhase);
 
             Login(userName, "eMos123!");
 
-            RePlanLog(); Thread.Sleep(5000);
+            RePlanLog(); WaitforIt(Properties.InactivePhase);
 
         }
 
@@ -531,15 +540,15 @@ namespace eMOS
         public void CheckTimeCalc3()
 
         {
-            SaveButton("Unapprove").Clicks(); Thread.Sleep(5000);
+            SaveButton("Unapprove").Clicks(); WaitforIt(Properties.InactivePhase);
 
             SaveButton("Save").Clicks(); SavedElement.WaitUntil();
 
             Assert.That(SavedElement, Is.Not.Null); Assert.That(PlanStatus("New").Displayed);
 
-            LogOut.Clicks(); Thread.Sleep(5000); Login("automationuser1", "eMos123!");
+            LogOut.Clicks(); WaitforIt(Properties.InactivePhase); Login("automationuser1", "eMos123!");
 
-            RePlanLog(); Thread.Sleep(5000);
+            RePlanLog(); WaitforIt(Properties.InactivePhase);
 
             EnterVolume2("600");
             
@@ -580,19 +589,19 @@ namespace eMOS
 
             TaskTypeParent("Office Tasks").Clicks();
 
-            TaskTypeChild("Discipline").Clicks(); Thread.Sleep(10000);
+            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.VeryInactivePhase)
 
-            Complexity.SelectIndex(1); Thread.Sleep(5000);
+            Complexity.SelectIndex(1); WaitforIt(Properties.VeryInactivePhase);
 
             UCodeNewTask.WaitUntil();
 
-            UCodeNewTask.Clicks(); Thread.Sleep(10000);
+            UCodeNewTask.Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
-            UCommentNewTask.EnterText("Unplanned"); Thread.Sleep(6000);
+            UCommentNewTask.EnterText("Unplanned"); WaitforIt(Properties.InactivePhase);
 
             SaveTask.WaitUntil();
 
-            SaveTask.Clicks(); Thread.Sleep(6000);
+            SaveTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             AddBtn.WaitUntil();
         }
@@ -605,7 +614,8 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddExistingTask.Clicks(); Thread.Sleep(10000);
+            AddExistingTask.Clicks();
+            WaitforIt(Properties.VeryInactivePhase);
 
             SelectTask(6).Clicks();
 
@@ -629,7 +639,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddFavTask.Clicks(); Thread.Sleep(5000);
+            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             SelectTask(5).WaitUntil();
 
@@ -727,7 +737,7 @@ namespace eMOS
         public void CheckTimeCalc4()
 
         {
-            Thread.Sleep(5000);
+            WaitforIt(Properties.InactivePhase);
 
             Assert.Multiple((() =>
                 {
@@ -776,19 +786,19 @@ namespace eMOS
 
             TaskTypeParent("Office Tasks").Clicks();
 
-            TaskTypeChild("Discipline").Clicks(); Thread.Sleep(10000);
+            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
-            Complexity.SelectIndex(1); Thread.Sleep(5000);
+            Complexity.SelectIndex(1); WaitforIt(Properties.InactivePhase);
 
             UCodeNewTask.WaitUntil();
 
-            UCodeNewTask.Clicks(); Thread.Sleep(10000);
+            UCodeNewTask.Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
-            UCommentNewTask.EnterText("Unplanned2"); Thread.Sleep(6000);
+            UCommentNewTask.EnterText("Unplanned2"); WaitforIt(Properties.InactivePhase);
 
             SaveTask.WaitUntil();
 
-            SaveTask.Clicks(); Thread.Sleep(5000);
+            SaveTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             AddBtn.WaitUntil();
         }
@@ -800,7 +810,7 @@ namespace eMOS
         {
             AddBtn.WaitUntil(); AddBtn.Clicks();
 
-            AddExistingTask.Clicks(); Thread.Sleep(10000);
+            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
             SelectTask(7).Clicks();
 
@@ -822,7 +832,7 @@ namespace eMOS
         {
             AddBtn.WaitUntil(); AddBtn.Clicks();
 
-            AddFavTask.Clicks(); Thread.Sleep(5000);
+            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             SelectTask(12).Clicks();
 
@@ -909,7 +919,7 @@ namespace eMOS
         public void LogApprove()
 
         {
-            Thread.Sleep(5000); SaveButton("Approve Log").WaitUntil();
+            WaitforIt(Properties.InactivePhase); SaveButton("Approve Log").WaitUntil();
 
             SaveButton("Approve Log").Clicks();
 
@@ -919,21 +929,21 @@ namespace eMOS
 
             Assert.That(PlanStatus("Log Approved").Displayed);
 
-            LogOut.Clicks(); Thread.Sleep(4000);
+            LogOut.Clicks(); WaitforIt(Properties.InactivePhase);
 
             Login("automationuser3", "eMos123!");
 
-            RePlanLog(); Thread.Sleep(5000);
+            RePlanLog(); WaitforIt(Properties.InactivePhase);
         }
 
 
         public void CheckTimeCalc5()
         {
-            SaveButton("Undo").Clicks(); Thread.Sleep(5000);
+            SaveButton("Undo").Clicks(); WaitforIt(Properties.InactivePhase);
 
-            SaveButton("Reject").Clicks(); Thread.Sleep(5000);
+            SaveButton("Reject").Clicks(); WaitforIt(Properties.InactivePhase);
 
-            RejectLog("Reject").Clicks(); Thread.Sleep(5000);
+            RejectLog("Reject").Clicks(); WaitforIt(Properties.InactivePhase);
 
             VolumeEntry(0.01, "Baker", 1).WaitUntil(); VolumeEntry(0.01, "Baker", 1).ClearText();
 
@@ -983,7 +993,7 @@ namespace eMOS
 
             VolumeTimePerformance.SelectDropdown("Volume");
 
-            VolumeTimePerformance.WaitUntil(); Thread.Sleep(5000);
+            VolumeTimePerformance.WaitUntil(); WaitforIt(Properties.InactivePhase);
 
 
             Assert.Multiple((() =>
@@ -1018,7 +1028,7 @@ namespace eMOS
 
             VolumeTimePerformance.SelectDropdown("Time");
 
-            VolumeTimePerformance.WaitUntil(); Thread.Sleep(5000);
+            VolumeTimePerformance.WaitUntil(); WaitforIt(Properties.InactivePhase);
 
 
             Assert.Multiple((() =>
@@ -1043,7 +1053,7 @@ namespace eMOS
 
             VolumeTimePerformance.SelectDropdown("Performance");
 
-            VolumeTimePerformance.WaitUntil(); Thread.Sleep(5000);
+            VolumeTimePerformance.WaitUntil(); WaitforIt(Properties.InactivePhase);
 
             Assert.Multiple((() =>
                 {
@@ -1064,7 +1074,7 @@ namespace eMOS
 
             VolumeTimePerformance.SelectDropdown("Time");
 
-            VolumeTimePerformance.WaitUntil(); Thread.Sleep(5000);
+            VolumeTimePerformance.WaitUntil(); WaitforIt(Properties.InactivePhase);
 
 
             Assert.Multiple((() =>
@@ -1090,7 +1100,7 @@ namespace eMOS
 
             VolumeTimePerformance.SelectDropdown("Performance");
 
-            VolumeTimePerformance.WaitUntil(); Thread.Sleep(5000);
+            VolumeTimePerformance.WaitUntil(); WaitforIt(Properties.InactivePhase);
 
 
             Assert.Multiple((() =>
@@ -1108,7 +1118,7 @@ namespace eMOS
 
         public void CopyPlan()
         {
-            Thread.Sleep(5000); TaskResourceView.WaitUntil();
+            WaitforIt(Properties.InactivePhase); TaskResourceView.WaitUntil();
 
             TaskResourceView.SelectDropdown("Task");
 

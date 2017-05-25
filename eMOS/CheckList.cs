@@ -40,11 +40,13 @@ namespace eMOS
 
                 DbOperation operation = new DbOperation();
 
-                operation.StoreSnap();
+                //operation.StoreSnap();
 
                 operation.ReStoreSnap();
 
-                Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["app-url"] };
+                Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["local-url"] };
+
+                //Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["live-url"] };
 
             }
 
@@ -573,7 +575,9 @@ namespace eMOS
 
                 options.AddUserProfilePreference("profile.password_manager_enabled", false);
 
-                Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["app-url"] };
+                Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["local-url"] };
+
+                //Properties.Driver = new ChromeDriver(options) { Url = ConfigurationManager.AppSettings["live-url"] };
 
                 //Properties.driver = new ChromeDriver(options) {Url = "http://dashboard.emos.io"};
 

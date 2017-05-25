@@ -10,6 +10,12 @@ namespace eMOS
     class DashboardTestAutomation : PageObjectDashboard
     {
 
+        public void WaitforIt(int pause)
+
+        {
+            Thread.Sleep(pause);
+        }
+
         public void Filter(string widget = "")
 
         {
@@ -152,7 +158,7 @@ namespace eMOS
 
             SingleFilter.SelectDropdown("Department");
 
-            ItemsCheck("metric").Clicks(); Thread.Sleep(4000);
+            ItemsCheck("metric").Clicks(); WaitforIt(Properties.LittlePause);
 
             //CheckItem("70").WaitUntil();
 
@@ -355,21 +361,21 @@ namespace eMOS
         {
             string timeStamp = DateTime.Now.ToString("yyyy-MM-dd THH:mm:ss");
 
-            DashboardTab.Clicks(); Thread.Sleep(7000);
+            DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
-            DashboardDropdown.Clicks(); Thread.Sleep(2000);
+            DashboardDropdown.Clicks(); WaitforIt(Properties.LittlePause);
 
-            SelectDashboard("Add new").Clicks(); Thread.Sleep(2000);
+            SelectDashboard("Add new").Clicks(); WaitforIt(Properties.LittlePause);
 
             DashboardName.WaitUntil();
 
-            DashboardName.ClearText(); DashboardName.EnterText(" Automate  " + timeStamp); Thread.Sleep(2000);
+            DashboardName.ClearText(); DashboardName.EnterText(" Automate  " + timeStamp); WaitforIt(Properties.LittlePause);
 
-            AddNewWidget.Clicks(); Thread.Sleep(2000);
+            AddNewWidget.Clicks(); WaitforIt(Properties.LittlePause);
 
-            ChooseChart(widgetName).Clicks(); Thread.Sleep(2000);
+            ChooseChart(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
 
-            SaveDashboard.Clicks(); Thread.Sleep(2000);
+            SaveDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
             DashboardGear.WaitUntil();
 
@@ -379,7 +385,7 @@ namespace eMOS
 
             EditDashboard.Clicks();
 
-            ConfigureDashboard.Clicks(); Thread.Sleep(2000);
+            ConfigureDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
             if (widget == "")
 
@@ -396,7 +402,7 @@ namespace eMOS
         public void Apply()
 
         {
-            ApplySettings.Clicks(); Thread.Sleep(2000);
+            ApplySettings.Clicks(); WaitforIt(Properties.LittlePause);
 
             SaveDashboard.Clicks();
         }
@@ -407,7 +413,7 @@ namespace eMOS
         {
             DashboardGear.Clicks();
 
-            DeleteDashboard.Clicks(); Thread.Sleep(2000);
+            DeleteDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
             Properties.Driver.SwitchTo().Alert().Accept();
         }
@@ -906,23 +912,23 @@ namespace eMOS
         public void DashboardPrint()
 
         {
-            DashboardTab.Clicks(); Thread.Sleep(5000);
+            DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
             DashboardDropdown.Clicks();
 
-            SelectDashboard("Testing").Clicks(); Thread.Sleep(2000);
+            SelectDashboard("Testing").Clicks(); WaitforIt(Properties.LittlePause);
 
-            DashboardGear.Clicks(); PrintDashboard.Clicks(); Thread.Sleep(5000);
+            DashboardGear.Clicks(); PrintDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
-            CheckAllWidget.Clicks(); Thread.Sleep(3000);
+            CheckAllWidget.Clicks(); WaitforIt(Properties.LittlePause);
 
             CheckAllWidget.Clicks();
 
-            CancelPrint.Clicks(); Thread.Sleep(2000);
+            CancelPrint.Clicks(); WaitforIt(Properties.LittlePause);
 
-            DashboardGear.Clicks(); PrintDashboard.Clicks(); Thread.Sleep(5000);
+            DashboardGear.Clicks(); PrintDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
-            CheckAllWidget.Clicks(); Thread.Sleep(3000);
+            CheckAllWidget.Clicks(); WaitforIt(Properties.LittlePause);
 
             CheckWidget(3).Clicks(); CheckWidget(5).Clicks(); CheckWidget(7).Clicks();
 
@@ -937,7 +943,7 @@ namespace eMOS
 
             DashboardGear.Clicks();
 
-            AdminSettings.Clicks(); Thread.Sleep(2000);
+            AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
             MakeDefault("Automate").Clicks();
 
@@ -957,9 +963,9 @@ namespace eMOS
 
             Delete();
 
-            DashboardGear.Clicks(); AdminSettings.Clicks(); Thread.Sleep(2000);
+            DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
-            CopyfromAdmin("Automate", "copy").Clicks(); Thread.Sleep(2000);
+            CopyfromAdmin("Automate", "copy").Clicks(); WaitforIt(Properties.LittlePause);
 
             CopyfromAdmin("Copy of", "edit").Clicks();
 
@@ -972,11 +978,11 @@ namespace eMOS
         public void ChangeDate(string date, string month, string year)
 
         {
-            //DashboardTab.Clicks(); Thread.Sleep(5000);
+            //DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
             //DashboardDropdown.Clicks();
 
-            //SelectDashboard("Testing").Clicks(); Thread.Sleep(2000);
+            //SelectDashboard("Testing").Clicks(); WaitforIt(Properties.LittlePause);
 
             SelectCalender.Clicks();
 

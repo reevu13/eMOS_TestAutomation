@@ -153,7 +153,7 @@ namespace eMOS
 
         public IWebElement SelectTask(int index)
         {
-            return Properties.Driver.FindElement(By.XPath($"//div [{index}] [contains (@ng-repeat, 'fav')] /input [contains (@id, 'task-checkbox')]"));
+            return Properties.Driver.FindElement(By.XPath($"//div [{index}] [contains (@ng-repeat, 'fav')] //input [contains (@id, 'task-checkbox')]"));
         }
 
 

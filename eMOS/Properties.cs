@@ -22,7 +22,7 @@ namespace eMOS
 
         public static int  InactivePhase = Convert.ToInt32(ConfigurationManager.AppSettings["inactive-phase"]);
 
-        public static int LittlePause = Convert.ToInt32(ConfigurationManager.AppSettings["little-phase"]);
+        public static int LittlePause = Convert.ToInt32(ConfigurationManager.AppSettings["little-pause"]);
 
         public static int VeryInactivePhase = Convert.ToInt32(ConfigurationManager.AppSettings["very-inactive-phase"]);
 

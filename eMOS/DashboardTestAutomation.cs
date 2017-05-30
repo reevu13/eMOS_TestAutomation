@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace eMOS
 {
@@ -139,7 +140,7 @@ namespace eMOS
         }
 
 
-        public void SingleMetric()
+        public void SingleMetric(string metricName)
 
         {
             Options("Metric").Clicks();
@@ -150,7 +151,15 @@ namespace eMOS
 
             SelectMetric.Clicks();
 
-            Metric("Total Completed Hours").Click();
+            Metric(metricName).Clicks();
+
+            if (metricName.Contains("Average"))
+
+            {
+                AverageAxis.SelectDropdown("Hour");
+            }
+
+            
 
             AddFilter("metric").Clicks();
 
@@ -425,7 +434,7 @@ namespace eMOS
 
             DashboardInitialize(widgetName);
 
-            SingleMetric();
+            SingleMetric("Total Completed Hours");
 
             RatioMetric();
 
@@ -743,25 +752,25 @@ namespace eMOS
             {
                 CustomMetricEdit(1).Clicks();
 
-                SingleMetric();
+                SingleMetric("Total Completed Planned Volume");
 
                 BackToList.Clicks();
 
                 CustomMetricEdit(2).Clicks();
 
-                SingleMetric();
+                SingleMetric("OEE");
 
                 BackToList.Clicks();
 
                 CustomMetricEdit(3).Clicks();
 
-                SingleMetric();
+                SingleMetric("Accountable Hours");
 
                 BackToList.Clicks();
 
                 CustomMetricEdit(4).Clicks();
 
-                SingleMetric();
+                SingleMetric("Average Planned Volume");
 
                 BackToList.Clicks();
             }
@@ -993,6 +1002,15 @@ namespace eMOS
             SelectDdMmYy(month).Clicks();
 
             SelectDdMmYy(date).Clicks();
+        }
+
+
+        public void GraphAssert()
+
+        {
+            WaitforIt(Properties.LittlePause);
+
+            Assert.That(GraphPresent.Displayed);
         }
 
     }

@@ -40,7 +40,7 @@ namespace eMOS
 
                 DbOperation operation = new DbOperation();
 
-                //operation.StoreSnap();
+                operation.StoreSnap();
 
                 operation.ReStoreSnap();
 
@@ -623,6 +623,8 @@ namespace eMOS
                 auto.SingleOrPareto("Single");
 
                 auto.ChangeDate("24", "October", "2016");
+
+                auto.GraphAssert();
             }
 
 
@@ -647,6 +649,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.CapacityWidget();
+
+                auto.ChangeDate("24", "October", "2016");
             }
 
             [Test, Order(4)]

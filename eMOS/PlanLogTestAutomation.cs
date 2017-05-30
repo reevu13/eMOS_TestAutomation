@@ -218,9 +218,9 @@ namespace eMOS
 
             TaskTypeParent("Office Tasks").Clicks();
 
-            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.VeryInactivePhase) 
+            TaskTypeChild("Discipline").Clicks(); WaitforIt(Properties.VeryInactivePhase); 
 
-            Complexity.SelectIndex(1); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.InactivePhase);
+            Complexity.SelectIndex(1); WaitforIt(Properties.VeryInactivePhase); 
 
             SaveTask.WaitUntil();
 
@@ -237,7 +237,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase); //WaitforIt(Properties.InactivePhase);
+            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
             SelectTask(5).WaitUntil();
 
@@ -261,7 +261,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase); //WaitforIt(Properties.InactivePhase);
+            AddFavTask.Clicks(); WaitforIt(Properties.InactivePhase);
 
             SelectTask(9).WaitUntil();
 
@@ -614,8 +614,7 @@ namespace eMOS
 
             AddBtn.Clicks();
 
-            AddExistingTask.Clicks();
-            WaitforIt(Properties.VeryInactivePhase);
+            AddExistingTask.Clicks(); WaitforIt(Properties.VeryInactivePhase);
 
             SelectTask(6).Clicks();
 

@@ -254,7 +254,7 @@ namespace eMOS
 
         public IWebElement Metric(string metricName)
         {
-            return Properties.Driver.FindElement(By.XPath($"//li [@class = \'ng-scope\'] /a[text() = \'{metricName}\']"));
+            return Properties.Driver.FindElement(By.XPath($"//li [@class = 'ng-scope'] /a[contains (text(), '{metricName}')]"));
         }
 
         public IWebElement MetricNumereator(string metricName)
@@ -375,5 +375,12 @@ namespace eMOS
         {
             return Properties.Driver.FindElement(By.XPath($"//h3 [contains (. , '{metricName}')] //a [contains (@title, 'Edit')] /i"));
         }
+
+
+        //Asssertion
+
+        [FindsBy(How = How.XPath, Using = "//* [contains (@class, 'c3-event-rect')]")]
+
+        public IWebElement GraphPresent { get; set; }
     }
 }

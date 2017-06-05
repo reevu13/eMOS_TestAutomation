@@ -140,6 +140,15 @@ namespace eMOS
         }
 
 
+        public void Link()
+
+        {
+            Options("Link").Clicks();
+
+            SelectLink("Automate").Clicks();
+        }
+
+
         public void SingleMetric(string metricName)
 
         {
@@ -158,9 +167,7 @@ namespace eMOS
             {
                 AverageAxis.SelectDropdown("Hour");
             }
-
             
-
             AddFilter("metric").Clicks();
 
             SingleFilter.WaitUntil();
@@ -874,6 +881,8 @@ namespace eMOS
 
             Filter("Trend Chart");
 
+            Link();
+
             Apply();
         }
 
@@ -948,7 +957,7 @@ namespace eMOS
         public void DashboardAdmin()
 
         {
-            SingleOrPareto("Single");
+            SingleOrPareto("Single"); WaitforIt(Properties.LittlePause);
 
             DashboardGear.Clicks();
 
@@ -956,9 +965,11 @@ namespace eMOS
 
             MakeDefault("Automate").Clicks();
 
+            SetAsChild("Automate").Clicks();
+
             DashboardTab.Clicks();
 
-            DashboardGear.Clicks(); EditDashboard.Clicks();
+            DashboardGear.Clicks(); EditDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
             ConfigureDashboard.Clicks();
 
@@ -978,9 +989,9 @@ namespace eMOS
 
             CopyfromAdmin("Copy of", "edit").Clicks();
 
-            RemoveElement.Clicks();
+            Delete();
 
-            SaveDashboard.Clicks();
+            //SaveDashboard.Clicks();
         }
 
 
@@ -1012,6 +1023,15 @@ namespace eMOS
 
             Assert.That(GraphPresent.Displayed);
         }
+
+        public void HeatMapAssert()
+
+        {
+            WaitforIt(Properties.LittlePause);
+
+            Assert.That(GraphPresent.Displayed);
+        }
+
 
     }
 }

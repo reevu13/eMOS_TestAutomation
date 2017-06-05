@@ -58,7 +58,7 @@ namespace eMOS
 
             Console.WriteLine("The selected User is " + UserSelect.GetTextFromDdL());
 
-            string timeStamp = DateTime.Now.ToString("M'/'dd'/'yyyy");
+            string timeStamp = DateTime.Now.ToString("M'/'d'/'yyyy");
 
             Console.WriteLine("PC Date " + timeStamp);
 
@@ -124,7 +124,7 @@ namespace eMOS
 
             UserSelect.SelectDropdown("Automation User 1");
 
-            string timeStamp = DateTime.Now.ToString("M'/'dd'/'yyyy");
+            string timeStamp = DateTime.Now.ToString("M'/'d'/'yyyy");
 
             Assert.IsTrue(Date.GetText().Equals(timeStamp));
             

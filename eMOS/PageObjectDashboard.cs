@@ -303,7 +303,14 @@ namespace eMOS
         }
 
 
+        //Link
 
+        public IWebElement SelectLink(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//select [contains (@id, 'drillDown')] /option [contains (@label, '{metricName}')]"));
+        }
+        
+        
         //Print
 
         [FindsBy(How = How.XPath, Using = "//a [contains (@ng-click, 'Print')]")]
@@ -338,11 +345,7 @@ namespace eMOS
 
         public IWebElement CopyDashboard { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a [contains (@ng-click, 'remove')]")]
-
-        public IWebElement RemoveElement { get; set; }
-
-        public IWebElement MakeDefault(string metricName)
+       public IWebElement MakeDefault(string metricName)
         {
             return Properties.Driver.FindElement(By.XPath($"//td [contains (., '{metricName}')] /following-sibling:: td /input [contains (@uib-tooltip, 'Make')]"));
         }
@@ -351,6 +354,13 @@ namespace eMOS
         {
             return Properties.Driver.FindElement(By.XPath($"//td [contains (., '{metricName}')] /preceding-sibling:: td /span [contains (@ng-click, '{copyeditremove}')] /a"));
         }
+
+        public IWebElement SetAsChild(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//td [contains (., '{metricName}')] /following-sibling:: td /input [contains (@uib-tooltip, 'Check')]"));
+        }
+
+        
 
 
 
@@ -382,5 +392,10 @@ namespace eMOS
         [FindsBy(How = How.XPath, Using = "//* [contains (@class, 'c3-event-rect')]")]
 
         public IWebElement GraphPresent { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//* [contains (@class, 'hour bordered')]")]
+
+        public IWebElement HeatMapPresent { get; set; }
+
     }
 }

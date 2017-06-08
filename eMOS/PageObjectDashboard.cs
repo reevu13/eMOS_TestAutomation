@@ -45,7 +45,7 @@ namespace eMOS
 
         public IWebElement DashboardName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//button [@title = \'save changes\']")]
+        [FindsBy(How = How.XPath, Using = "//button [@title = 'save changes']")]
 
         public IWebElement SaveDashboard { get; set; }
 
@@ -57,13 +57,15 @@ namespace eMOS
 
         public IWebElement DeleteDashboard { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a [@id = \'dashboard-admin-edit\']")]
+        [FindsBy(How = How.XPath, Using = "//a [@id = 'dashboard-admin-edit']")]
 
         public IWebElement EditDashboard { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//i [@class = \'glyphicon glyphicon-cog\']")]
-
-        public IWebElement ConfigureDashboard { get; set; }
+        
+        public IWebElement ConfigureDashboard(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//h3 [contains (. , '{metricName}')] //a [contains (@title, 'Edit')] "));
+        }
 
 
 
@@ -309,8 +311,12 @@ namespace eMOS
         {
             return Properties.Driver.FindElement(By.XPath($"//select [contains (@id, 'drillDown')] /option [contains (@label, '{metricName}')]"));
         }
-        
-        
+
+        [FindsBy(How = How.XPath, Using = "//* [2] [@class = 'tick'] //* [2][@x = '0']")]
+
+        public IWebElement LinkClick { get; set; }
+
+
         //Print
 
         [FindsBy(How = How.XPath, Using = "//a [contains (@ng-click, 'Print')]")]
@@ -341,7 +347,7 @@ namespace eMOS
 
         public IWebElement AdminSettings { get; set; }
 
-        [FindsBy(How = How.XPath, Using = " //a [contains (@ng-click, 'copy')]")]
+        [FindsBy(How = How.XPath, Using = "//a [contains (@ng-click, 'copy')]")]
 
         public IWebElement CopyDashboard { get; set; }
 
@@ -360,7 +366,27 @@ namespace eMOS
             return Properties.Driver.FindElement(By.XPath($"//td [contains (., '{metricName}')] /following-sibling:: td /input [contains (@uib-tooltip, 'Check')]"));
         }
 
+        public IWebElement DahsboardSelect(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//button [contains (. , '{metricName}')]"));
+        }
         
+        [FindsBy(How = How.XPath, Using = "//select [contains (@id, 'multiselect-4')]")]
+
+        public IWebElement SelectUser { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button [contains (@id, 'multiselect-4')]")]
+
+        public IWebElement AddUser { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button [contains (., 'Save')]")]
+
+        public IWebElement SaveShare { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a [text() = 'Log Out']")]
+
+        public IWebElement LogOut { get; set; }
+
 
 
 
@@ -397,5 +423,8 @@ namespace eMOS
 
         public IWebElement HeatMapPresent { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//table [contains (@class, 'table-striped')] //td")]
+
+        public IWebElement ComplianceTableAssert { get; set; }
     }
 }

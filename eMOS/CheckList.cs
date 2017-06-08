@@ -589,7 +589,7 @@ namespace eMOS
             }
 
 
-            [Test, Order(0)]
+            //[Test, Order(0)]
 
 
             public void Dashboard()
@@ -638,6 +638,8 @@ namespace eMOS
                 auto.SingleOrPareto("Pareto");
 
                 auto.ChangeDate("24", "October", "2016");
+
+                auto.GraphAssert();
             }
 
 
@@ -651,6 +653,8 @@ namespace eMOS
                 auto.CapacityWidget();
 
                 auto.ChangeDate("24", "October", "2016");
+
+                auto.GraphAssert();
             }
 
             [Test, Order(4)]
@@ -661,6 +665,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.SparkLine();
+
+                auto.GraphAssert();
             }
 
 
@@ -672,6 +678,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.StackedComparison("Comparison");
+
+                auto.GraphAssert();
             }
 
             [Test, Order(6)]
@@ -682,6 +690,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.StackedComparison("Stacked");
+
+                auto.GraphAssert();
             }
 
 
@@ -693,6 +703,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.HeatMap();
+
+                auto.HeatMapAssert();
             }
 
 
@@ -704,6 +716,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.TrendChart();
+
+                auto.GraphAssert();
             }
 
             [Test, Order(9)]
@@ -714,6 +728,10 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.ComplianceTable();
+
+                auto.ChangeDate("24", "August", "2016");
+
+                auto.ComplianceAssert();
             }
 
 
@@ -725,6 +743,10 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.ComplianceHeatMap();
+
+                auto.ChangeDate("24", "August", "2016");
+
+                auto.HeatMapAssert();
             }
 
 
@@ -748,6 +770,22 @@ namespace eMOS
 
                 auto.DashboardAdmin();
             }
+
+
+            [Test, Order(13)]
+
+            public void DashboardShare()
+
+            {
+                DashboardTestAutomation auto = new DashboardTestAutomation();
+
+                auto.DashboardShare();
+
+                auto.ChangeDate("24", "August", "2016");
+
+                auto.HeatMapAssert();
+            }
+
 
         }
     }

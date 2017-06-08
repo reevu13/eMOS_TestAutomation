@@ -11,6 +11,9 @@ namespace eMOS
     class DashboardTestAutomation : PageObjectDashboard
     {
 
+        PlanLogTestAutomation PlanLog = new PlanLogTestAutomation();
+
+       
         public void WaitforIt(int pause)
 
         {
@@ -145,7 +148,7 @@ namespace eMOS
         {
             Options("Link").Clicks();
 
-            SelectLink("Automate").Clicks();
+            SelectLink("Automate").Clicks(); WaitforIt(Properties.LittlePause);
         }
 
 
@@ -375,7 +378,7 @@ namespace eMOS
         public void DashboardInitialize(string widgetName, string widget = "")
 
         {
-            string timeStamp = DateTime.Now.ToString("yyyy-MM-dd THH:mm:ss");
+            string timeStamp = DateTime.Now.ToString("d-MM-yyyy, HH:mm:ss");
 
             DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
@@ -401,7 +404,7 @@ namespace eMOS
 
             EditDashboard.Clicks();
 
-            ConfigureDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+            ConfigureDashboard(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
 
             if (widget == "")
 
@@ -457,7 +460,7 @@ namespace eMOS
 
             Options("Base").Clicks();
 
-            BasenGoal(1000, 9000);
+            BasenGoal(1000, 4000);
 
             WidgetName.ClearText(); WidgetName.EnterText("One");
 
@@ -881,9 +884,9 @@ namespace eMOS
 
             Filter("Trend Chart");
 
-            Link();
+            Link(); 
 
-            Apply();
+            Apply(); LinkClick.Clicks();
         }
 
         public void ComplianceTable()
@@ -923,7 +926,7 @@ namespace eMOS
 
             Formatting();
 
-            Apply();
+            Apply(); WaitforIt(Properties.LittlePause);
         }
 
 
@@ -967,17 +970,19 @@ namespace eMOS
 
             SetAsChild("Automate").Clicks();
 
-            DashboardTab.Clicks();
+            DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
-            DashboardGear.Clicks(); EditDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+            DashboardGear.Clicks(); WaitforIt(Properties.LittlePause);
 
-            ConfigureDashboard.Clicks();
+            EditDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+
+            ConfigureDashboard("One").Clicks();
 
             Options("Base").Clicks();
 
             BasenGoal(200, 1000);
 
-            Apply();
+            Apply(); WaitforIt(Properties.LittlePause);
 
             DashboardGear.Clicks(); CopyDashboard.Clicks();
 
@@ -991,7 +996,46 @@ namespace eMOS
 
             Delete();
 
+            DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
+
+            CopyfromAdmin("Automate", "share").Clicks(); WaitforIt(Properties.LittlePause);
+
+            DahsboardSelect("Automate").Clicks();
+
+            SelectUser.SelectDropdown("Automation User 3");
+
+            AddUser.Clicks(); SaveShare.Clicks();
+
             //SaveDashboard.Clicks();
+        }
+
+
+        public void DashboardShare()
+
+        {
+            //LogOut.Clicks(); WaitforIt(Properties.LittlePause);
+
+            //PlanLog.Login("automationuser3", "eMos123!");
+
+            //SaveDashboard.Clicks();
+
+            ComplianceHeatMap(); WaitforIt(Properties.LittlePause);
+
+            DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
+
+            CopyfromAdmin("Automate", "share").Clicks(); WaitforIt(Properties.LittlePause);
+
+            DahsboardSelect("Automate").Clicks();
+
+            SelectUser.SelectDropdown("Automation User 2");
+
+            AddUser.Clicks(); SaveShare.Clicks();
+
+            LogOut.Clicks();
+
+            PlanLog.Login("automationuser2", "eMos123!"); WaitforIt(Properties.LittlePause);
+
+            DashboardTab.Clicks();
         }
 
 
@@ -1029,9 +1073,15 @@ namespace eMOS
         {
             WaitforIt(Properties.LittlePause);
 
-            Assert.That(GraphPresent.Displayed);
+            Assert.That(HeatMapPresent.Displayed);
         }
 
+        public void ComplianceAssert()
 
+        {
+            WaitforIt(Properties.LittlePause);
+
+            Assert.That(ComplianceTableAssert.Displayed);
+        }
     }
 }

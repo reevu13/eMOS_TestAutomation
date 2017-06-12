@@ -721,7 +721,7 @@ namespace eMOS
 
             CustomMetricEdit(2).Clicks();
 
-            CustomMetric(); Formatting();
+            RatioMetric(); Formatting();
 
             BackToList.Clicks();
 
@@ -733,7 +733,7 @@ namespace eMOS
 
             CustomMetricEdit(4).Clicks();
 
-            CustomMetric(); Formatting();
+            SingleMetric("Total Barrier Hours"); Formatting();
 
             BackToList.Clicks();
 
@@ -1013,12 +1013,6 @@ namespace eMOS
         public void DashboardShare()
 
         {
-            //LogOut.Clicks(); WaitforIt(Properties.LittlePause);
-
-            //PlanLog.Login("automationuser3", "eMos123!");
-
-            //SaveDashboard.Clicks();
-
             ComplianceHeatMap(); WaitforIt(Properties.LittlePause);
 
             DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);

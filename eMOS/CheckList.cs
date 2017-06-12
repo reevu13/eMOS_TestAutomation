@@ -704,6 +704,8 @@ namespace eMOS
 
                 auto.HeatMap();
 
+                auto.ChangeDate("30", "November", "2016");
+
                 auto.HeatMapAssert();
             }
 

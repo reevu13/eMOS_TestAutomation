@@ -403,7 +403,7 @@ namespace eMOS
             EditDashboard.WaitUntil();
 
             EditDashboard.Clicks();
-
+                
             ConfigureDashboard(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
 
             if (widget == "")
@@ -477,9 +477,11 @@ namespace eMOS
 
             CapacityWidget(1).Clicks();
 
+            MetricLabel.ClearText(); MetricLabel.EnterText("Capacity Metric 1");
+
             SelectMetric.Clicks();
 
-            Metric("Total Completed Hours").Click();
+            Metric("Total Planned Hours").Click();
 
             AddFilter("metric").Clicks();
 
@@ -498,6 +500,8 @@ namespace eMOS
             BackToList.Clicks();
 
             CapacityWidget(2).Clicks();
+
+            MetricLabel.ClearText(); MetricLabel.EnterText("Capacity Metric 2");
 
             MetricRadio("Ratio").Clicks();
 
@@ -539,6 +543,8 @@ namespace eMOS
 
             CapacityWidget(3).Clicks();
 
+            MetricLabel.ClearText(); MetricLabel.EnterText("Capacity Metric 3");
+
             SelectMetric.Clicks();
 
             Metric("Total Completed Hours").Click();
@@ -560,6 +566,8 @@ namespace eMOS
             BackToList.Clicks();
 
             CapacityWidget(4).Clicks();
+
+            MetricLabel.ClearText(); MetricLabel.EnterText("Capacity Metric 4");
 
             MetricRadio("Custom").Clicks();
 
@@ -995,18 +1003,6 @@ namespace eMOS
             CopyfromAdmin("Copy of", "edit").Clicks();
 
             Delete();
-
-            DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
-
-            CopyfromAdmin("Automate", "share").Clicks(); WaitforIt(Properties.LittlePause);
-
-            DahsboardSelect("Automate").Clicks();
-
-            SelectUser.SelectDropdown("Automation User 3");
-
-            AddUser.Clicks(); SaveShare.Clicks();
-
-            //SaveDashboard.Clicks();
         }
 
 

@@ -312,7 +312,7 @@ namespace eMOS
             return Properties.Driver.FindElement(By.XPath($"//select [contains (@id, 'drillDown')] /option [contains (@label, '{metricName}')]"));
         }
 
-        [FindsBy(How = How.XPath, Using = "//* [2] [@class = 'tick'] //* [2][@x = '0']")]
+        [FindsBy(How = How.XPath, Using = "//*[@class = 'c3-axis c3-axis-x'] /*[@class = 'tick'] [1] /* [2]")]
 
         public IWebElement LinkClick { get; set; }
 

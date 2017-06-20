@@ -878,7 +878,7 @@ namespace eMOS
 
             Options("Axis").Clicks();
 
-            AxisType.SelectDropdown("Day");
+            AxisType.SelectDropdown("Month");
 
             SeriesSelection.SelectDropdown("Resources");
 
@@ -894,7 +894,7 @@ namespace eMOS
 
             Link(); 
 
-            Apply(); LinkClick.Clicks();
+            Apply(); WaitforIt(Properties.InactivePhase); LinkClick.Clicks();
         }
 
         public void ComplianceTable()

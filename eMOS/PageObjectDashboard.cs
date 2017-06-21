@@ -199,6 +199,10 @@ namespace eMOS
 
         public IWebElement MetricLabel { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//i [contains (@uib-tooltip, 'Reset')]")]
+
+        public IWebElement ResetFilter { get; set; }
+
 
         //axis
 
@@ -426,5 +430,10 @@ namespace eMOS
         [FindsBy(How = How.XPath, Using = "//table [contains (@class, 'table-striped')] //td")]
 
         public IWebElement ComplianceTableAssert { get; set; }
+
+        public IWebElement NameOfDashboard(string metricName)
+        {
+            return Properties.Driver.FindElement(By.XPath($"//div [contains (@class, 'pagetitle')] [contains (. , '{metricName}')]"));
+        }
     }
 }

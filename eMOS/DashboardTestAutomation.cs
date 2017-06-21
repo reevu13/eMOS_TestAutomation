@@ -148,7 +148,7 @@ namespace eMOS
         {
             Options("Link").Clicks();
 
-            SelectLink("Automate").Clicks(); WaitforIt(Properties.LittlePause);
+            SelectLink("Drill Down").Clicks(); WaitforIt(Properties.LittlePause);
         }
 
 
@@ -375,7 +375,7 @@ namespace eMOS
         }
 
 
-        public void DashboardInitialize()
+        public void DashboardInitialize(string dashboardName)
 
         {
             string timeStamp = DateTime.Now.ToString("d-MM-yyyy, HH:mm:ss");
@@ -388,7 +388,7 @@ namespace eMOS
 
             DashboardName.WaitUntil();
 
-            DashboardName.ClearText(); DashboardName.EnterText(" Automate  " + timeStamp); WaitforIt(Properties.LittlePause);
+            DashboardName.ClearText(); DashboardName.EnterText(" " + dashboardName + " " + timeStamp); WaitforIt(Properties.LittlePause);
 
             SaveDashboard.Clicks(); WaitforIt(Properties.LittlePause);
 
@@ -507,7 +507,7 @@ namespace eMOS
         public void CapacityWidget()
 
         {
-            DashboardInitialize();
+            DashboardInitialize("Automate Capacity");
 
             CapacityWidget(1).Clicks();
 
@@ -793,6 +793,8 @@ namespace eMOS
         {
             //DashboardInitialize(widgetName);
 
+            ResetFilter.Clicks();
+
             AddWidget(widgetName);
 
             Options("Metric").Click();
@@ -875,13 +877,14 @@ namespace eMOS
             Link();
 
             Apply(); WaitforIt(Properties.InactivePhase); LinkClick.Clicks();
+            
         }
 
 
         public void HeatMap()
 
         {
-            DashboardInitialize();
+            //DashboardInitialize();
 
             Options("Metric").Clicks();
 
@@ -910,7 +913,7 @@ namespace eMOS
         public void TrendChart()
 
         {
-            DashboardInitialize();
+            //DashboardInitialize();
 
             Options("Metric").Clicks();
 
@@ -940,7 +943,7 @@ namespace eMOS
         public void ComplianceTable()
 
         {
-            DashboardInitialize();
+            //DashboardInitialize();
 
             Filter("Compliance Table");
 
@@ -958,7 +961,7 @@ namespace eMOS
         public void ComplianceHeatMap()
 
         {
-            DashboardInitialize();
+            //DashboardInitialize();
 
             Filter("Compliance Heatmap");
 
@@ -1012,9 +1015,9 @@ namespace eMOS
 
             AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
-            SetAsChild("Automate").Clicks();
+            SetAsChild("Drill Down").Clicks();
 
-            CopyfromAdmin("Automate", "edit").Clicks(); WaitforIt(Properties.LittlePause);
+            CopyfromAdmin("Drill Down", "edit").Clicks(); WaitforIt(Properties.LittlePause);
 
             DashboardGear.Clicks(); WaitforIt(Properties.LittlePause);
 
@@ -1136,6 +1139,14 @@ namespace eMOS
             WaitforIt(Properties.LittlePause);
 
             Assert.That(ComplianceTableAssert.Displayed);
+        }
+
+        public void DashboardNameAssert(string dashboardName)
+
+        {
+            WaitforIt(Properties.LittlePause);
+
+            Assert.That(NameOfDashboard(dashboardName).Displayed);
         }
     }
 }

@@ -616,7 +616,7 @@ namespace eMOS
 
             [Test, Order(1)]
 
-            public void CapacityWidget()
+            public void Dbd100125()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
@@ -633,12 +633,12 @@ namespace eMOS
             
             [Test, Order(2)]
 
-            public void SecondDashboard()
+            public void Dbd200240()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
-                auto.DashboardInitialize();
+                auto.DashboardInitialize("Drill Down");
 
                 auto.SingleOrPareto("Pareto", "Two");
 
@@ -662,28 +662,34 @@ namespace eMOS
 
             [Test, Order(3)]
 
-            public void ThirddDashboard()
+            public void Dbd300345()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.DashboardChild();
 
-                auto.DashboardInitialize();
+                auto.DashboardInitialize("Automate");
 
                 auto.StackedComparison("Stacked");
+
+                auto.DashboardNameAssert("Drill Down");
+
+                Properties.Driver.Navigate().Back();
 
                 auto.GraphAssert();
 
                 auto.StackedComparison("Comparison");
 
+                auto.DashboardNameAssert("Drill Down");
+
+                Properties.Driver.Navigate().Back();
+
                 auto.GraphAssert();
                 
             }
 
-
             
-
             [Test, Order(4)]
 
             public void SparkLine()

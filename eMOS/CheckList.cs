@@ -613,37 +613,8 @@ namespace eMOS
             }
 
 
+
             [Test, Order(1)]
-
-            public void SingleMetric()
-
-            {
-                DashboardTestAutomation auto = new DashboardTestAutomation();
-
-                auto.SingleOrPareto("Single");
-
-                auto.ChangeDate("24", "October", "2016");
-
-                auto.GraphAssert();
-            }
-
-
-            [Test, Order(2)]
-
-            public void ParetoChart()
-
-            {
-                DashboardTestAutomation auto = new DashboardTestAutomation();
-
-                auto.SingleOrPareto("Pareto");
-
-                auto.ChangeDate("24", "October", "2016");
-
-                auto.GraphAssert();
-            }
-
-
-            [Test, Order(3)]
 
             public void CapacityWidget()
 
@@ -655,7 +626,63 @@ namespace eMOS
                 auto.ChangeDate("24", "October", "2016");
 
                 auto.GraphAssert();
+
+                auto.Delete();
             }
+
+            
+            [Test, Order(2)]
+
+            public void SecondDashboard()
+
+            {
+                DashboardTestAutomation auto = new DashboardTestAutomation();
+
+                auto.DashboardInitialize();
+
+                auto.SingleOrPareto("Pareto", "Two");
+
+                auto.ChangeDate("24", "August", "2016");
+
+                auto.GraphAssert();
+
+                auto.SingleOrPareto("Single", "One");
+
+                auto.ChangeDate("25", "October", "2016");
+
+                auto.GraphAssert();
+
+                auto.SingleOrPareto("Pareto", "Three");
+
+                auto.ChangeDate("24", "August", "2016");
+
+                auto.GraphAssert();
+            }
+
+
+            [Test, Order(3)]
+
+            public void ThirddDashboard()
+
+            {
+                DashboardTestAutomation auto = new DashboardTestAutomation();
+
+                auto.DashboardChild();
+
+                auto.DashboardInitialize();
+
+                auto.StackedComparison("Stacked");
+
+                auto.GraphAssert();
+
+                auto.StackedComparison("Comparison");
+
+                auto.GraphAssert();
+                
+            }
+
+
+            
 
             [Test, Order(4)]
 
@@ -665,6 +692,8 @@ namespace eMOS
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
                 auto.SparkLine();
+
+                auto.ChangeDate("27", "August", "2016");
 
                 auto.GraphAssert();
             }

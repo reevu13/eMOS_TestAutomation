@@ -415,7 +415,7 @@ namespace eMOS
 
         //Asssertion
 
-        [FindsBy(How = How.XPath, Using = "//* [contains (@class, 'c3-event-rect')]")]
+        [FindsBy(How = How.XPath, Using = "//* [contains (@class, 'c3-event-rect')] [1]")]
 
         public IWebElement GraphPresent { get; set; }
 

@@ -375,7 +375,7 @@ namespace eMOS
         }
 
 
-        public void DashboardInitialize(string widgetName, string widget = "")
+        public void DashboardInitialize()
 
         {
             string timeStamp = DateTime.Now.ToString("d-MM-yyyy, HH:mm:ss");
@@ -390,7 +390,9 @@ namespace eMOS
 
             DashboardName.ClearText(); DashboardName.EnterText(" Automate  " + timeStamp); WaitforIt(Properties.LittlePause);
 
-            AddNewWidget.Clicks(); WaitforIt(Properties.LittlePause);
+            SaveDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+
+            /*AddNewWidget.Clicks(); WaitforIt(Properties.LittlePause);
 
             ChooseChart(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
 
@@ -413,8 +415,38 @@ namespace eMOS
 
                 Description.EnterText("...Description...");
 
+            }*/
+
+        }
+
+
+        public void AddWidget(string widgetName, string widget = "")
+
+        {
+            DashboardGear.WaitUntil(); DashboardGear.Clicks();
+
+            EditDashboard.WaitUntil();  EditDashboard.Clicks();
+
+            AddNewWidget.Clicks(); WaitforIt(Properties.LittlePause);
+
+            ChooseChart(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
+
+            SaveDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+
+            DashboardGear.WaitUntil(); DashboardGear.Clicks();
+
+            EditDashboard.WaitUntil(); EditDashboard.Clicks();
+
+            ConfigureDashboard(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
+
+            if (widget == "")
+
+            {
+                Options("Basic").Clicks();
+
+                Description.EnterText("...Description...");
+
             }
-            
         }
 
 
@@ -438,11 +470,13 @@ namespace eMOS
         }
 
 
-        public void SingleOrPareto(string widgetName)
+        public void SingleOrPareto(string widgetName, string widget)
 
         {
 
-            DashboardInitialize(widgetName);
+            //DashboardInitialize(widgetName);
+
+            AddWidget(widgetName);
 
             SingleMetric("Total Completed Hours");
 
@@ -462,7 +496,7 @@ namespace eMOS
 
             BasenGoal(1000, 4000);
 
-            WidgetName.ClearText(); WidgetName.EnterText("One");
+            WidgetName.ClearText(); WidgetName.EnterText(widget);
 
             Apply();
 
@@ -473,7 +507,7 @@ namespace eMOS
         public void CapacityWidget()
 
         {
-            DashboardInitialize("Capacity", "Capacity");
+            DashboardInitialize();
 
             CapacityWidget(1).Clicks();
 
@@ -711,7 +745,9 @@ namespace eMOS
         public void SparkLine()
 
         {
-            DashboardInitialize("Sparkline");
+            //DashboardInitialize();
+
+            AddWidget("Sparkline");
 
             Options("Metric").Clicks();
 
@@ -755,7 +791,9 @@ namespace eMOS
         public void StackedComparison(string widgetName)
 
         {
-            DashboardInitialize(widgetName);
+            //DashboardInitialize(widgetName);
+
+            AddWidget(widgetName);
 
             Options("Metric").Click();
 
@@ -834,14 +872,16 @@ namespace eMOS
 
             Formatting(widgetName);
 
-            Apply();
+            Link();
+
+            Apply(); WaitforIt(Properties.InactivePhase); LinkClick.Clicks();
         }
 
 
         public void HeatMap()
 
         {
-            DashboardInitialize("HeatMap");
+            DashboardInitialize();
 
             Options("Metric").Clicks();
 
@@ -870,7 +910,7 @@ namespace eMOS
         public void TrendChart()
 
         {
-            DashboardInitialize("Trend");
+            DashboardInitialize();
 
             Options("Metric").Clicks();
 
@@ -900,7 +940,7 @@ namespace eMOS
         public void ComplianceTable()
 
         {
-            DashboardInitialize("Compliance Table");
+            DashboardInitialize();
 
             Filter("Compliance Table");
 
@@ -918,7 +958,7 @@ namespace eMOS
         public void ComplianceHeatMap()
 
         {
-            DashboardInitialize("Compliance Heatmap");
+            DashboardInitialize();
 
             Filter("Compliance Heatmap");
 
@@ -965,10 +1005,34 @@ namespace eMOS
         }
 
 
+        public void DashboardChild()
+
+        {
+            DashboardGear.Clicks();
+
+            AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
+
+            SetAsChild("Automate").Clicks();
+
+            CopyfromAdmin("Automate", "edit").Clicks(); WaitforIt(Properties.LittlePause);
+
+            DashboardGear.Clicks(); WaitforIt(Properties.LittlePause);
+
+            EditDashboard.Clicks(); WaitforIt(Properties.LittlePause);
+
+            ConfigureDashboard("One").Clicks();
+
+            Options("Base").Clicks();
+
+            BasenGoal(200, 1000);
+
+            Apply(); WaitforIt(Properties.LittlePause);
+        }
+
         public void DashboardAdmin()
 
         {
-            SingleOrPareto("Single"); WaitforIt(Properties.LittlePause);
+            SingleOrPareto("Single", "One"); WaitforIt(Properties.LittlePause);
 
             DashboardGear.Clicks();
 

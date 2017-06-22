@@ -507,7 +507,7 @@ namespace eMOS
         public void CapacityWidget()
 
         {
-            DashboardInitialize("Automate Capacity");
+            AddWidget("Capacity");
 
             CapacityWidget(1).Clicks();
 
@@ -886,6 +886,8 @@ namespace eMOS
         {
             //DashboardInitialize();
 
+            AddWidget("HeatMap");
+
             Options("Metric").Clicks();
 
             RatioMetric();
@@ -915,6 +917,8 @@ namespace eMOS
         {
             //DashboardInitialize();
 
+            AddWidget("Trend Chart");
+
             Options("Metric").Clicks();
 
             CustomMetric();
@@ -935,15 +939,15 @@ namespace eMOS
 
             Filter("Trend Chart");
 
-            Link(); 
-
-            Apply(); WaitforIt(Properties.InactivePhase); LinkClick.Clicks();
+            Apply(); WaitforIt(Properties.InactivePhase);
         }
 
         public void ComplianceTable()
 
         {
             //DashboardInitialize();
+
+            AddWidget("Compliance Table");
 
             Filter("Compliance Table");
 
@@ -962,6 +966,8 @@ namespace eMOS
 
         {
             //DashboardInitialize();
+
+            AddWidget("Compliance Heatmap");
 
             Filter("Compliance Heatmap");
 
@@ -1041,9 +1047,9 @@ namespace eMOS
 
             AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
-            MakeDefault("Automate").Clicks();
+            MakeDefault("Default").Clicks();
 
-            SetAsChild("Automate").Clicks();
+            //SetAsChild("Automate").Clicks();
 
             DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
 
@@ -1065,7 +1071,7 @@ namespace eMOS
 
             DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
-            CopyfromAdmin("Automate", "copy").Clicks(); WaitforIt(Properties.LittlePause);
+            CopyfromAdmin("Default", "copy").Clicks(); WaitforIt(Properties.LittlePause);
 
             CopyfromAdmin("Copy of", "edit").Clicks();
 
@@ -1080,9 +1086,9 @@ namespace eMOS
 
             DashboardGear.Clicks(); AdminSettings.Clicks(); WaitforIt(Properties.LittlePause);
 
-            CopyfromAdmin("Automate", "share").Clicks(); WaitforIt(Properties.LittlePause);
+            CopyfromAdmin("Shared", "share").Clicks(); WaitforIt(Properties.LittlePause);
 
-            DahsboardSelect("Automate").Clicks();
+            DahsboardSelect("Shared").Clicks();
 
             SelectUser.SelectDropdown("Automation User 2");
 
@@ -1099,11 +1105,8 @@ namespace eMOS
         public void ChangeDate(string date, string month, string year)
 
         {
-            //DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
-
-            //DashboardDropdown.Clicks();
-
-            //SelectDashboard("Testing").Clicks(); WaitforIt(Properties.LittlePause);
+           
+            WaitforIt(Properties.LittlePause);
 
             SelectCalender.Clicks();
 

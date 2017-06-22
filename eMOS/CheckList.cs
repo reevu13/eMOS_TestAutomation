@@ -621,6 +621,8 @@ namespace eMOS
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
+                auto.DashboardInitialize("Automate Capacity");
+
                 auto.CapacityWidget();
 
                 auto.ChangeDate("24", "October", "2016");
@@ -707,30 +709,19 @@ namespace eMOS
 
             [Test, Order(5)]
 
-            public void ComparisonChart()
+            public void TrendChart()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
-                auto.StackedComparison("Comparison");
+                auto.DashboardInitialize("Trend Chart & HeatMap");
+
+                auto.TrendChart();
 
                 auto.GraphAssert();
             }
 
             [Test, Order(6)]
-
-            public void StackedBarChart()
-
-            {
-                DashboardTestAutomation auto = new DashboardTestAutomation();
-
-                auto.StackedComparison("Stacked");
-
-                auto.GraphAssert();
-            }
-
-
-            [Test, Order(7)]
 
             public void HeatMap()
 
@@ -744,25 +735,15 @@ namespace eMOS
                 auto.HeatMapAssert();
             }
 
-
-            [Test, Order(8)]
-
-            public void TrendChart()
-
-            {
-                DashboardTestAutomation auto = new DashboardTestAutomation();
-
-                auto.TrendChart();
-
-                auto.GraphAssert();
-            }
-
-            [Test, Order(9)]
+            
+            [Test, Order(7)]
 
             public void ComplianceTable()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
+
+                auto.DashboardInitialize("Compliance");
 
                 auto.ComplianceTable();
 
@@ -772,7 +753,7 @@ namespace eMOS
             }
 
 
-            [Test, Order(10)]
+            [Test, Order(9)]
 
             public void ComplianceHeatMap()
 
@@ -787,7 +768,7 @@ namespace eMOS
             }
 
 
-            [Test, Order(11)]
+            [Test, Order(10)]
 
             public void DashboardPrint()
 
@@ -798,23 +779,27 @@ namespace eMOS
             }
 
 
-            [Test, Order(12)]
+            [Test, Order(11)]
 
             public void DashboardAdmin()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
 
+                auto.DashboardInitialize("Default Dashboard");
+
                 auto.DashboardAdmin();
             }
 
 
-            [Test, Order(13)]
+            [Test, Order(12)]
 
             public void DashboardShare()
 
             {
                 DashboardTestAutomation auto = new DashboardTestAutomation();
+
+                auto.DashboardInitialize("Shared");
 
                 auto.DashboardShare();
 

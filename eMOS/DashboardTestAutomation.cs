@@ -439,7 +439,7 @@ namespace eMOS
 
             ConfigureDashboard(widgetName).Clicks(); WaitforIt(Properties.LittlePause);
 
-            if (widget == "")
+            if (widget != "" && widgetName != "Capacity")
 
             {
                 Options("Basic").Clicks();

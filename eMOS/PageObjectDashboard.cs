@@ -344,6 +344,11 @@ namespace eMOS
             return Properties.Driver.FindElement(By.XPath($"//div /div [{index}] [contains (@class, 'checkbox')]  /label [contains (., '')] /input "));
         }
 
+        [FindsBy(How = How.XPath, Using = "//button [contains (., 'Cancel')] [@class = 'cancel']")]
+
+        public IWebElement CancelPrinting { get; set; }
+        
+
 
         //Admin settings
 

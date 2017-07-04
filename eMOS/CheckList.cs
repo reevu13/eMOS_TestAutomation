@@ -89,11 +89,6 @@ namespace eMOS
                 PlanLogTestAutomation automate = new PlanLogTestAutomation();
 
                 automate.FavReCorrect();
-
-//                DbOperation operation = new DbOperation();
-//
-//                operation.StoreSnap();
-
             }
 
 
@@ -730,7 +725,7 @@ namespace eMOS
 
                 auto.HeatMap();
 
-                auto.ChangeDate("30", "November", "2016");
+                auto.ChangeDate("28", "July", "2016");
 
                 auto.HeatMapAssert();
             }

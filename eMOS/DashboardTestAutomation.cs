@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WindowsInput;
+using WindowsInput.Native;
 using NUnit.Framework;
 
 namespace eMOS
@@ -1010,7 +1012,15 @@ namespace eMOS
 
             CheckWidget(3).Clicks(); CheckWidget(5).Clicks(); CheckWidget(7).Clicks();
 
-            Print.Clicks();
+            Print.Clicks(); WaitforIt(Properties.LittlePause);
+
+            //CancelPrinting.Clicks();
+
+            //InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_I);
+
+            InputSimulator i = new InputSimulator();
+
+            
         }
 
 

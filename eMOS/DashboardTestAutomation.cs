@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
 using NUnit.Framework;
@@ -993,7 +994,7 @@ namespace eMOS
 
         {
             DashboardTab.Clicks(); WaitforIt(Properties.LittlePause);
-
+        
             DashboardDropdown.Clicks();
 
             SelectDashboard("Testing").Clicks(); WaitforIt(Properties.LittlePause);
@@ -1014,12 +1015,7 @@ namespace eMOS
 
             Print.Clicks(); WaitforIt(Properties.LittlePause);
 
-            //CancelPrinting.Clicks();
-
-            //InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_I);
-
-            InputSimulator i = new InputSimulator();
-
+            SendKeys.SendWait("{ESC}");
             
         }
 
